@@ -13,6 +13,7 @@ function App({ Component, pageProps }: AppProps) {
         },
       },
     });
+
     queryClientRef.current = queryClient;
   }
 

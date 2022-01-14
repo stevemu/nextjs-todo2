@@ -5,6 +5,7 @@ const handler = baseHandler();
 
 handler.get(async (req, res) => {
   const db = await getDb();
+
   const todos = await db.collection('todo').find({}).toArray();
   return res.status(200).json(todos);
 });
