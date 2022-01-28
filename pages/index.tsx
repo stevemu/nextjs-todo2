@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Todo } from '../types/Todo';
 import { useCallback, useState } from 'react';
 import { Filter, FilterEnum } from '../components/Filter';
+import { filterTodos } from '../utils/todo';
 
 const Home: NextPage = () => {
   const [filter, setFilter] = useState<FilterEnum>(FilterEnum.ALL);
@@ -56,6 +57,8 @@ const Home: NextPage = () => {
     })();
   }, [handleSubmit, postTodoMutation, refetch]);
 
+  const filteredTodos = filterTodos(todos, filter);
+
   return (
     <div>
       <Filter
@@ -65,7 +68,7 @@ const Home: NextPage = () => {
         }}
       />
       <ul>
-        {todos.map((todo) => {
+        {filteredTodos.map((todo) => {
           return (
             <li key={todo._id}>
               <span>
